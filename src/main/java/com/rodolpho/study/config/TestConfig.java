@@ -3,9 +3,11 @@ package com.rodolpho.study.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import com.rodolpho.study.entities.Category;
 import com.rodolpho.study.entities.Order;
 import com.rodolpho.study.entities.User;
 import com.rodolpho.study.entities.enums.OrderStatus;
+import com.rodolpho.study.repositories.CategoryRepository;
 import com.rodolpho.study.repositories.OrderRepository;
 import com.rodolpho.study.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+
         User u1 = new User(null, "Rodolpho Caetano", "rod12@gmail.com", "981616716", "123456");
         User u2 = new User(null, "Daniele Cabral", "dani123@gmail.com", "976205149", "123456");
 
@@ -35,5 +46,6 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 }
