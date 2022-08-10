@@ -1,7 +1,7 @@
 package com.rodolpho.study.services;
 
-import com.rodolpho.study.entities.Category;
-import com.rodolpho.study.repositories.CategoryRepository;
+import com.rodolpho.study.entities.Product;
+import com.rodolpho.study.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryService {
+public class ProductService {
 
     @Autowired
-    private CategoryRepository repository;
+    private ProductRepository repository;
 
-    public List<Category> findAll() {
+    public List<Product> findAll() {
         return repository.findAll();
     }
 
-    public Category findById(Long id) {
-        Optional<Category> obj = repository.findById(id);
+    public Product findById(Long id) {
+        Optional<Product> obj = repository.findById(id);
         return obj.get();
     }
 }
