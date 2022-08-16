@@ -65,10 +65,9 @@ public class Order implements Serializable {
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus != null){
+        if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
-
     }
 
     public User getClient() {
@@ -87,8 +86,16 @@ public class Order implements Serializable {
         this.payment = payment;
     }
 
-    public Set<OrderItem> getItems(){
+    public Set<OrderItem> getItems() {
         return items;
+    }
+
+    public Double getTotal(){
+        double sum = 0.0;
+        for(OrderItem x : items){
+            sum += x.getSubTotal();
+        }
+        return sum;
     }
 
     @Override
