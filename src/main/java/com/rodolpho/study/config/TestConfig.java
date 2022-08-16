@@ -59,9 +59,9 @@ public class TestConfig implements CommandLineRunner {
         User u1 = new User(null, "Rodolpho Caetano", "rod12@gmail.com", "981616716", "123456");
         User u2 = new User(null, "Daniele Cabral", "dani123@gmail.com", "976205149", "123456");
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.DELIVERED, u1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.PAID, u1);
+        Order o1 = new Order(null, Instant.parse("2022-06-20T19:53:07Z"), OrderStatus.DELIVERED, u1);
+        Order o2 = new Order(null, Instant.parse("2022-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
+        Order o3 = new Order(null, Instant.parse("2022-07-22T15:21:22Z"), OrderStatus.PAID, u1);
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
@@ -73,5 +73,9 @@ public class TestConfig implements CommandLineRunner {
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
+        Payment pay1 = new Payment(null, Instant.parse("2022-07-22T17:21:22Z"), o3);
+        o3.setPayment(pay1);
+
+        orderRepository.save(o3);
     }
 }
